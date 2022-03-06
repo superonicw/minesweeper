@@ -1,0 +1,12 @@
+/* Constants */
+export const START_WS_COMMUNICATION = 'START_WS_COMMUNICATION'
+
+export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED'
+
+export const START_GAME = 'START_GAME'
+
+export const GET_CURRENT_MAP = 'GET_CURRENT_MAP'
+
+export const OPEN_CELL = 'OPEN_CELL'
+
+export const CONNECTION_CHANGED = 'CONNECTION_CHANGED'
