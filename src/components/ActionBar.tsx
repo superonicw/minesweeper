@@ -27,6 +27,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({ onStartGame }) => {
           variant="outlined"
           size="small"
           color="secondary"
+          data-testid="level-button"
           onClick={() => onStartGame(level)}
         >
           {level}

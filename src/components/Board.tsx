@@ -1,9 +1,7 @@
 import { useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Alert } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { Board as BoardType, ConnectionStatus } from 'types'
-import { openCell, selectConnectionStatus } from 'store/modules/main'
+import { Board as BoardType, CellCoords, ConnectionStatus } from 'types'
 import { Cell } from './Cell'
 
 const useStyles = makeStyles({
@@ -25,14 +23,16 @@ const useStyles = makeStyles({
 
 export interface BoardProps {
   board: BoardType
+  connectionStatus: ConnectionStatus
+  onCellClick: (_: CellCoords) => void
 }
 
-export const Board: React.FC<BoardProps> = ({ board }) => {
+export const Board: React.FC<BoardProps> = ({
+  connectionStatus,
+  board,
+  onCellClick,
+}) => {
   const classes = useStyles()
-
-  const connectionStatus = useSelector(selectConnectionStatus)
-
-  const dispatch = useDispatch()
 
   const boardStatus = useMemo(() => {
     if (!board) {
@@ -53,8 +53,14 @@ export const Board: React.FC<BoardProps> = ({ board }) => {
     }
   }, [board])
 
-  const handleCellClick = (rowId: number, colId: number) => {
-    dispatch(openCell({ x: colId, y: rowId }))
+  const isDisconnected = connectionStatus === ConnectionStatus.Disconnected
+
+  if (isDisconnected) {
+    return (
+      <Alert variant="filled" severity="warning">
+        Connection lost. Please reload
+      </Alert>
+    )
   }
 
   if (!board) {
@@ -65,24 +71,17 @@ export const Board: React.FC<BoardProps> = ({ board }) => {
     )
   }
 
-  const isDisconnected = connectionStatus === ConnectionStatus.Disconnected
-
   return (
     <>
       <div className={classes.board}>
         {boardStatus.isBusted && (
           <Alert severity="error" variant="filled" className={classes.alert}>
-            You're Busted
+            You're busted
           </Alert>
         )}
         {boardStatus.isCompleted && (
           <Alert severity="success" variant="filled" className={classes.alert}>
             Congratulations! Well done
-          </Alert>
-        )}
-        {isDisconnected && (
-          <Alert variant="filled" severity="warning">
-            Connection lost. Please reload
           </Alert>
         )}
         {board.map((row, rowId) => (
@@ -96,7 +95,7 @@ export const Board: React.FC<BoardProps> = ({ board }) => {
                   boardStatus.isCompleted ||
                   isDisconnected
                 }
-                onClick={() => handleCellClick(rowId, colId)}
+                onClick={() => onCellClick({ x: colId, y: rowId })}
               />
             ))}
           </div>

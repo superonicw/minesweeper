@@ -28,6 +28,7 @@ export const Cell: React.FC<CellProps> = ({ value, disabled, onClick }) => {
       <Button
         variant="outlined"
         className={classes.cell}
+        data-testid="cell"
         disabled={disabled}
         onClick={onClick}
       />
@@ -40,6 +41,7 @@ export const Cell: React.FC<CellProps> = ({ value, disabled, onClick }) => {
         variant="outlined"
         className={classes.cell}
         disabled
+        data-testid="cell"
         onClick={onClick}
       >
         <img src="/assets/images/bomb.svg" alt="bomb" />
@@ -48,7 +50,12 @@ export const Cell: React.FC<CellProps> = ({ value, disabled, onClick }) => {
   }
 
   return (
-    <Button variant="outlined" disabled className={classes.cell}>
+    <Button
+      variant="outlined"
+      disabled
+      className={classes.cell}
+      data-testid="cell"
+    >
       {value !== '0' && (
         <span style={{ color: COLOR_MAP[Number(value) - 1] }}>{value}</span>
       )}

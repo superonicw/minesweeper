@@ -3,9 +3,10 @@ import { Container, Grid, Typography, CircularProgress } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { get } from 'lodash'
 import { GameLevels } from 'config'
-import { ConnectionStatus } from 'types'
+import { CellCoords, ConnectionStatus } from 'types'
 import { ActionBar, Board } from 'components'
 import {
+  openCell,
   selectBoard,
   selectConnectionStatus,
   startGame,
@@ -27,6 +28,10 @@ const Minesweeper: React.FC = () => {
 
   const handleStartGame = (level: string) => {
     dispatch(startGame(get(GameLevels, level)))
+  }
+
+  const handleCellClick = (coords: CellCoords) => {
+    dispatch(openCell(coords))
   }
 
   return (
@@ -51,7 +56,11 @@ const Minesweeper: React.FC = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <Board board={board} />
+              <Board
+                board={board}
+                connectionStatus={connectionStatus}
+                onCellClick={handleCellClick}
+              />
             </Grid>
           </>
         )}
