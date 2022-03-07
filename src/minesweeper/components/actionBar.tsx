@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 })
 
-export const ActionBar: React.FC<ActionBarProps> = ({ onStartGame }) => {
+const ActionBar: React.FC<ActionBarProps> = ({ onStartGame }) => {
   const classes = useStyles()
 
   return (
@@ -36,3 +36,5 @@ export const ActionBar: React.FC<ActionBarProps> = ({ onStartGame }) => {
     </div>
   )
 }
+
+export default ActionBar

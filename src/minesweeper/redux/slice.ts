@@ -21,8 +21,8 @@ export const getCurrentMap = createAction<number>(GET_CURRENT_MAP)
 
 export const openCell = createAction<CellCoords>(OPEN_CELL)
 
-export const mainSlice = createSlice({
-  name: 'main',
+export const minesweeperSlice = createSlice({
+  name: 'minesweeper',
   initialState,
   reducers: {
     messageReceived: (state, action: PayloadAction<string>) => {
@@ -44,6 +44,6 @@ export const mainSlice = createSlice({
   },
 })
 
-export const { messageReceived, connectionChanged } = mainSlice.actions
+export const { messageReceived, connectionChanged } = minesweeperSlice.actions
 
-export const reducer = mainSlice.reducer
+export const reducer = minesweeperSlice.reducer

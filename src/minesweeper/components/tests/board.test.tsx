@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { ConnectionStatus } from 'types'
-import { Board } from '../Board'
+import Board from '../board'
 
 describe('ActionBar', () => {
   const onCellClick = jest.fn()

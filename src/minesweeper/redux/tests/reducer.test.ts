@@ -1,5 +1,5 @@
 import { ConnectionStatus, MainInitialState } from 'types'
-import { connectionChanged, messageReceived, reducer } from '../modules/main'
+import { connectionChanged, messageReceived, reducer } from '../slice'
 
 describe('counter reducer', () => {
   const initialState: MainInitialState = {

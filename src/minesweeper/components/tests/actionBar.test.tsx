@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { GameLevels } from 'config'
-import { ActionBar } from '../ActionBar'
+import ActionBar from '../actionBar'
 
 describe('ActionBar', () => {
   const onStartGame = jest.fn()

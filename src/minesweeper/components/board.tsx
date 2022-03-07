@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Alert } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { Board as BoardType, CellCoords, ConnectionStatus } from 'types'
-import { Cell } from './Cell'
+import Cell from './cell'
 
 const useStyles = makeStyles({
   board: {
@@ -27,7 +27,7 @@ export interface BoardProps {
   onCellClick: (_: CellCoords) => void
 }
 
-export const Board: React.FC<BoardProps> = ({
+const Board: React.FC<BoardProps> = ({
   connectionStatus,
   board,
   onCellClick,
@@ -104,3 +104,5 @@ export const Board: React.FC<BoardProps> = ({
     </>
   )
 }
+
+export default Board

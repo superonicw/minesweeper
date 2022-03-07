@@ -20,7 +20,7 @@ export interface CellProps {
   onClick: () => void
 }
 
-export const Cell: React.FC<CellProps> = ({ value, disabled, onClick }) => {
+const Cell: React.FC<CellProps> = ({ value, disabled, onClick }) => {
   const classes = useStyles()
 
   if (value === '□') {
@@ -62,3 +62,5 @@ export const Cell: React.FC<CellProps> = ({ value, disabled, onClick }) => {
     </Button>
   )
 }
+
+export default Cell

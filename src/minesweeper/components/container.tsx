@@ -4,13 +4,15 @@ import { makeStyles } from '@mui/styles'
 import { get } from 'lodash'
 import { GameLevels } from 'config'
 import { CellCoords, ConnectionStatus } from 'types'
-import { ActionBar, Board } from 'components'
+import ActionBar from './actionBar'
+import Board from './board'
 import {
   openCell,
+  startGame,
   selectBoard,
   selectConnectionStatus,
-  startGame,
-} from 'store/modules/main'
+} from '../redux'
+
 const useStyles = makeStyles({
   container: {
     textAlign: 'center',
