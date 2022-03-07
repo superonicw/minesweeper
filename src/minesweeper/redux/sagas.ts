@@ -15,6 +15,7 @@ import {
   OPEN_CELL,
 } from './constants'
 import { connectionChanged, messageReceived } from './slice'
+import { StrictEffect } from '@redux-saga/types'
 
 const ws = new WebSocket(WS_URL)
 
@@ -45,7 +46,7 @@ const initWebsocket = () => {
   })
 }
 
-const wsSaga = function* (): any {
+const wsSaga = function* (): Generator<StrictEffect, void, any> {
   const channel = yield call(initWebsocket)
 
   while (true) {
@@ -59,16 +60,20 @@ const wsSaga = function* (): any {
   }
 }
 
-const startGame = function* ({ payload }: StartGameActionPayload): any {
+const startGame = function* ({
+  payload,
+}: StartGameActionPayload): Generator<void> {
   yield ws.send(`new ${payload}`)
   yield ws.send('map')
 }
 
-const getCurrentMap = function* (): any {
+const getCurrentMap = function* (): Generator<void> {
   yield ws.send('map')
 }
 
-const openCell = function* ({ payload }: OpenCellActionPayload): any {
+const openCell = function* ({
+  payload,
+}: OpenCellActionPayload): Generator<void> {
   yield ws.send(`open ${payload.x} ${payload.y}`)
   yield ws.send('map')
 }

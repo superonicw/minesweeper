@@ -47,7 +47,7 @@ const Minesweeper: React.FC = () => {
 
         {connectionStatus === ConnectionStatus.Init && (
           <Grid item xs={12} justifyContent="center">
-            <CircularProgress />
+            <CircularProgress data-testid="loader" />
           </Grid>
         )}
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { startWSCommunication } from 'minesweeper/redux'
-import Minesweeper from 'minesweeper/components/container'
+import Minesweeper from 'minesweeper/components/minesweeper'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
